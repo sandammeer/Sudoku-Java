@@ -5,7 +5,7 @@ import javax.swing.*;
 
 public class MainFrame extends JFrame {
 
-	SudokuData data = new SudokuData();
+	SudokuData data;
 	
 	public void frameInit() {
 		super.frameInit();
@@ -20,7 +20,7 @@ public class MainFrame extends JFrame {
 	}
 	
 	private void setupData() {
-		data = new SudokuData();
+		data = SudokuData.getInstance();
 		
 		int[][] puzzle = data.puzzle;
 

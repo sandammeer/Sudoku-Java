@@ -3,7 +3,21 @@ import java.awt.Font;
 
 import javax.swing.JTextField;
 
+
 public class SudokuData {
+	
+  // Eine (versteckte) Klassenvariable vom Typ der eigenen Klasse
+  private static SudokuData instance;
+  // Verhindere die Erzeugung des Objektes über andere Methoden
+  private SudokuData () {}
+  // Eine Zugriffsmethode auf Klassenebene, welches dir '''einmal''' ein konkretes 
+  // Objekt erzeugt und dieses zurückliefert.
+   public static SudokuData getInstance () {
+     if (SudokuData.instance == null) {
+     	SudokuData.instance = new SudokuData ();
+     }
+     return SudokuData.instance;
+   }
 	
 	// Name-constants for the game properties
    public static final int GRID_SIZE = 9;    // Size of the board
