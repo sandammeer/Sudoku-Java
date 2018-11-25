@@ -42,6 +42,8 @@ public class MainFrame extends JFrame {
 	               
 	               // Add ActionEvent listener to process the input
 	               // ... [TODO 4] (Later) ...
+	            	CellInputListener inputListener = new CellInputListener();
+	            	currentTextField.addActionListener(inputListener);
 	            } else {
 	               styleNonEditableTextfield(currentTextField, data.puzzle[row][col]);
 	            }

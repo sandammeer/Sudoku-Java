@@ -5,7 +5,7 @@ import java.io.*;
 public class Sudoku {
 
 	public static void main(String[] args) {
-		
+
 		MainFrame frame = new MainFrame();
 		frame.showSudoku();
 	}

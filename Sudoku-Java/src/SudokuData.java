@@ -12,9 +12,9 @@ public class SudokuData {
   private SudokuData () {}
   // Eine Zugriffsmethode auf Klassenebene, welches dir '''einmal''' ein konkretes 
   // Objekt erzeugt und dieses zurückliefert.
-   public static SudokuData getInstance () {
+   public static SudokuData getInstance() {
      if (SudokuData.instance == null) {
-     	SudokuData.instance = new SudokuData ();
+     	SudokuData.instance = new SudokuData();
      }
      return SudokuData.instance;
    }
@@ -37,13 +37,13 @@ public class SudokuData {
  
    // The game board composes of 9x9 JTextFields,
    // each containing String "1" to "9", or empty String
-   JTextField[][] tfCells = new JTextField[GRID_SIZE][GRID_SIZE];
+   static JTextField[][] tfCells = new JTextField[GRID_SIZE][GRID_SIZE];
  
    // Puzzle to be solved and the mask (which can be used to control the
    //  difficulty level).
    // Hardcoded here. Extra credit for automatic puzzle generation
    //  with various difficulty levels.
-   int[][] puzzle =
+   static int[][] puzzle =
       {{5, 3, 4, 6, 7, 8, 9, 1, 2},
        {6, 7, 2, 1, 9, 5, 3, 4, 8},
        {1, 9, 8, 3, 4, 2, 5, 6, 7},
@@ -55,7 +55,7 @@ public class SudokuData {
        {3, 4, 5, 2, 8, 6, 1, 7, 9}};
    
    // For testing, open only 2 cells.
-   boolean[][] states =
+   static boolean[][] states =
       {{false, false, false, false, false, true, false, false, false},
        {false, false, false, false, false, false, false, false, true},
        {false, false, false, false, false, false, false, false, false},
