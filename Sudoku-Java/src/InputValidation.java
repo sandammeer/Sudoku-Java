@@ -14,7 +14,7 @@ public class InputValidation {
 			}
 			
 		}
-		System.out.println("Value is 1-9" + isValid);
+		System.out.println("Value is 1-9 " + isValid);
 		return isValid;
 	}
 
@@ -22,8 +22,10 @@ public class InputValidation {
 	// alternative solution using a regular expression (regex)
 	// not tested
 	public boolean validateValueWithRegex(String value) {
-		String regularExpression = "^[1-9]"; 
-		return value.matches(regularExpression);
+		String regularExpression = "^[1-9]";
+		boolean isValid = value.matches(regularExpression);
+		System.out.println("Value is 1-9 " + isValid);
+		return isValid;
 	}
 	
 	public boolean isValueAllowed(String value, int[] row, int[] col) {

@@ -11,12 +11,11 @@ public class CellInputListener implements ActionListener {
 		JTextField selectedTextField = (JTextField) event.getSource();
 		String text = selectedTextField.getText();
 
-		// Gets the
+		// Gets the position of the textfield in the grid
 		int[] position = positionForTextField(selectedTextField);
 		int row = position[0];
 		int col = position[1];
 		
-		// Todo: Pass data to Validator
 		InputValidation validator = new InputValidation();
 		
 		boolean isAllowed = validator.isValueAllowed(text, SudokuData.puzzle[row], getArrayForColumn(col));
