@@ -20,52 +20,32 @@ public class MainFrame extends JFrame {
 	}
 	
 	private void setupData() {
-		data = SudokuData.getInstance();
 		
-		int[][] puzzle = data.puzzle;
+		int[][] puzzle = SudokuData.puzzle;
 
 		Container cPane = getContentPane();
-		cPane.setLayout(new GridLayout(data.GRID_SIZE, data.GRID_SIZE));
+		cPane.setLayout(new GridLayout(SudokuData.GRID_SIZE, SudokuData.GRID_SIZE));
 		
-		JTextField[][] tfCells = data.tfCells;
+		SudokuCell[][] tfCells = SudokuData.tfCells;
 		
 		// Construct 9x9 JTextFields and add to the content-pane
-	      for (int row = 0; row < data.GRID_SIZE; ++row) {
-	         for (int col = 0; col < data.GRID_SIZE; ++col) {
-	            tfCells[row][col] = new JTextField(); // Allocate element of array
-	            cPane.add(tfCells[row][col]);            // ContentPane adds JTextField
+	      for (int row = 0; row < SudokuData.GRID_SIZE; ++row) {
+	         for (int col = 0; col < SudokuData.GRID_SIZE; ++col) {
+	        	 
+	            tfCells[row][col] = new SudokuCell(); // Allocate element of array
+	            SudokuCell textField = tfCells[row][col];
+	            cPane.add(textField);         		  // ContentPane adds JTextField
 	            
-	            JTextField currentTextField = tfCells[row][col];
+	            boolean state = SudokuData.states[row][col];
 	            
-	            if (data.states[row][col]) {
-	            	styleEditableTextfield(currentTextField);
-	               
-	               // Add ActionEvent listener to process the input
-	               // ... [TODO 4] (Later) ...
-	            	CellInputListener inputListener = new CellInputListener();
-	            	currentTextField.addActionListener(inputListener);
-	            } else {
-	               styleNonEditableTextfield(currentTextField, data.puzzle[row][col]);
-	            }
-	            
-	            // Beautify all the cells
-	            currentTextField.setHorizontalAlignment(JTextField.CENTER);
-	            currentTextField.setFont(data.FONT_NUMBERS);
+                // Add Keylistener to process the typed key
+            	CellInputListener inputListener = new CellInputListener();
+            	textField.addKeyListener(inputListener);
+            	
+	            textField.setNumberPuzzle(SudokuData.puzzle[row][col]);
+	            textField.setIsFilled(state);
 	         }
 	      }
-	}
-	
-	private void styleEditableTextfield(JTextField textField) {
-		textField.setText("");
-		textField.setEditable(true);
-		textField.setBackground(data.OPEN_CELL_BGCOLOR);
-	}
-	
-	private void styleNonEditableTextfield(JTextField textField, int value) {
-		textField.setText(value + "");
-		textField.setEditable(false);
-		textField.setBackground(data.CLOSED_CELL_BGCOLOR);
-		textField.setForeground(data.CLOSED_CELL_TEXT);
 	}
 	
 	public void showSudoku() {

@@ -3,12 +3,12 @@ import javax.swing.*;
 import java.util.*;
 
 
-public class CellInputListener implements ActionListener {
+public class CellInputListener implements KeyListener {
 
-	public void actionPerformed(ActionEvent event) {
+	public void keyTyped(KeyEvent e) {
 		
 		// Get the source object that fired the event
-		JTextField selectedTextField = (JTextField) event.getSource();
+		JTextField selectedTextField = (JTextField) e.getSource();
 		String text = selectedTextField.getText();
 
 		// Gets the position of the textfield in the grid
@@ -18,18 +18,8 @@ public class CellInputListener implements ActionListener {
 		
 		InputValidation validator = new InputValidation();
 		
-		boolean isAllowed = validator.isValueAllowed(text, SudokuData.puzzle[row], getArrayForColumn(col));
+		boolean isAllowed = validator.isValueAllowed(text, SudokuData.puzzle[row], SudokuData.getColumn(col));
 		System.out.println(isAllowed);
-	}
-
-	public int[] getArrayForColumn(int col) {
-		
-		int[] column = new int[SudokuData.puzzle[0].length];
-		
-		for(int row = 0; row < SudokuData.puzzle[0].length; row++) {
-		    column[row] = SudokuData.puzzle[row][col];
-		}
-		return column;
 	}
 	
 	private int[] positionForTextField(JTextField textField) {
@@ -47,6 +37,18 @@ public class CellInputListener implements ActionListener {
            }
         }
 		return new int[]{rowSelected, colSelected};
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
